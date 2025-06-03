@@ -32,6 +32,9 @@ public:
     // Declarar amistad
     friend class TListaPoro;
     friend class TListaPosicion;
+
+    friend ostream & operator<<(ostream &, TListaPoro &);  // ← ESTA LÍNEA ES CLAVE
+
 };
 
 // Clase TListaPosicion
