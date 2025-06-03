@@ -147,7 +147,7 @@ double TPoro::Volumen() {
 }
 
 // Devuelve el color
-char * TPoro::Color() const{
+const char * TPoro::Color() const{
     return color;
 }
 
