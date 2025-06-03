@@ -17,7 +17,7 @@ TPoro::TPoro(int px, int py, double vol) {
 }
 
 // Constructor a partir de una posición, un volumen y un color
-TPoro::TPoro(int px, int py, double vol, char *col) {
+TPoro::TPoro(int px, int py, double vol, const char *col) {
     x = px;
     y = py;
     volumen = vol;
@@ -116,7 +116,7 @@ void TPoro::Volumen(double vol) {
 }
 
 // Modifica el color
-void TPoro::Color(char *col) {
+void TPoro::Color(const char *col) {
     if (color != NULL) {
         delete[] color;
         color = NULL;
@@ -124,11 +124,10 @@ void TPoro::Color(char *col) {
     
     if (col != NULL) {
         color = new char[strlen(col) + 1];
-        strcpy(color, col);
-        // Convertir a minúsculas
-        for (int i = 0; color[i]; i++) {
-            color[i] = tolower(color[i]);
+        for (int i = 0; col[i]; i++) {
+            color[i] = tolower(col[i]);
         }
+        color[strlen(col)] = '\0';
     }
 }
 
@@ -148,7 +147,7 @@ double TPoro::Volumen() {
 }
 
 // Devuelve el color
-char * TPoro::Color() {
+char * TPoro::Color() const{
     return color;
 }
 
