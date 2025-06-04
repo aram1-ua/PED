@@ -25,7 +25,7 @@ public:
     // Constructor a partir de una posición y un volumen
     TPoro(int, int, double);
     // Constructor a partir de una posición, un volumen y un color
-    TPoro(int, int, double, char *);
+    TPoro(int, int, double, const char *);  // ← CAMBIADO: agregado 'const'
     // Constructor de copia
     TPoro(TPoro &);
     // Destructor
@@ -43,7 +43,7 @@ public:
     // Modifica el volumen
     void Volumen(double);
     // Modifica el color
-    void Color(char *);
+    void Color(const char *);
     // Devuelve la coordenada x de la posición
     int PosicionX();
     // Devuelve la coordenada y de la posición
@@ -51,7 +51,7 @@ public:
     // Devuelve el volumen
     double Volumen();
     // Devuelve el color
-    char * Color();
+    const char * Color() const;
     // Devuelve cierto si el poro está vacío
     bool EsVacio();
 
