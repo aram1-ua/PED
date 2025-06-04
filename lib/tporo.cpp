@@ -35,7 +35,7 @@ TPoro::TPoro(int px, int py, double vol, const char *col) {
 }
 
 // Constructor de copia
-TPoro::TPoro(TPoro &otro) {
+TPoro::TPoro(const TPoro &otro) {
     x = otro.x;
     y = otro.y;
     volumen = otro.volumen;
@@ -60,7 +60,7 @@ TPoro::~TPoro() {
 }
 
 // Sobrecarga del operador asignación
-TPoro & TPoro::operator=(TPoro &otro) {
+TPoro & TPoro::operator=(const TPoro &otro) {
     if (this != &otro) {
         // Liberar memoria previa
         if (color != NULL) {
@@ -83,7 +83,7 @@ TPoro & TPoro::operator=(TPoro &otro) {
 }
 
 // Sobrecarga del operador igualdad
-bool TPoro::operator==(TPoro &otro) {
+bool TPoro::operator==(const TPoro &otro) const {
     if (x != otro.x || y != otro.y || volumen != otro.volumen) {
         return false;
     }
@@ -100,7 +100,7 @@ bool TPoro::operator==(TPoro &otro) {
 }
 
 // Sobrecarga del operador desigualdad
-bool TPoro::operator!=(TPoro &otro) {
+bool TPoro::operator!=(const TPoro &otro) const {
     return !(*this == otro);
 }
 
@@ -132,32 +132,32 @@ void TPoro::Color(const char *col) {
 }
 
 // Devuelve la coordenada x de la posición
-int TPoro::PosicionX() {
+int TPoro::PosicionX() const{
     return x;
 }
 
 // Devuelve la coordenada y de la posición
-int TPoro::PosicionY() {
+int TPoro::PosicionY() const{
     return y;
 }
 
 // Devuelve el volumen
-double TPoro::Volumen() {
+double TPoro::Volumen() const{
     return volumen;
 }
 
 // Devuelve el color
-const char * TPoro::Color() const{
+char * TPoro::Color() const{
     return color;
 }
 
 // Devuelve cierto si el poro está vacío
-bool TPoro::EsVacio() {
+bool TPoro::EsVacio() const{
     return (x == 0 && y == 0 && volumen == 0.0 && color == NULL);
 }
 
 // Sobrecarga del operador SALIDA
-ostream & operator<<(ostream &os, TPoro &poro) {
+ostream & operator<<(ostream &os, const TPoro &poro) {
     if (!poro.EsVacio()) {
         os.setf(ios::fixed);
         os.precision(2);

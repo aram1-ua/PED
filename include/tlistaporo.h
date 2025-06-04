@@ -23,18 +23,17 @@ public:
     // Constructor por defecto
     TListaNodo();
     // Constructor de copia
-    TListaNodo(TListaNodo &);
+    TListaNodo(const TListaNodo &);  // CAMBIO: const
     // Destructor
     ~TListaNodo();
     // Sobrecarga del operador asignación
-    TListaNodo & operator=(TListaNodo &);
+    TListaNodo & operator=(const TListaNodo &);  // CAMBIO: const
 
     // Declarar amistad
     friend class TListaPoro;
     friend class TListaPosicion;
 
-    friend ostream & operator<<(ostream &, TListaPoro &);  // ← ESTA LÍNEA ES CLAVE
-
+    friend ostream & operator<<(ostream &, const TListaPoro &);  // CAMBIO: const
 };
 
 // Clase TListaPosicion
@@ -48,21 +47,21 @@ public:
     // Constructor por defecto
     TListaPosicion();
     // Constructor de copia
-    TListaPosicion(TListaPosicion &);
+    TListaPosicion(const TListaPosicion &);  // CAMBIO: const
     // Destructor
     ~TListaPosicion();
     // Sobrecarga del operador asignación
-    TListaPosicion& operator=(TListaPosicion &);
+    TListaPosicion& operator=(const TListaPosicion &);  // CAMBIO: const
 
     // MÉTODOS
     // Sobrecarga del operador igualdad
-    bool operator==(TListaPosicion &);
+    bool operator==(const TListaPosicion &) const;  // CAMBIO: const
     // Devuelve la posición anterior
     TListaPosicion Anterior();
     // Devuelve la posición siguiente
     TListaPosicion Siguiente();
     // Devuelve TRUE si la posición no apunta a una lista, FALSE en caso contrario
-    bool EsVacia();
+    bool EsVacia() const;  // CAMBIO: const
 
     // Declarar amistad
     friend class TListaPoro;
@@ -81,43 +80,43 @@ public:
     // Constructor por defecto
     TListaPoro();
     // Constructor de copia
-    TListaPoro(TListaPoro &);
+    TListaPoro(const TListaPoro &);  // CAMBIO: const
     // Destructor
     ~TListaPoro();
     // Sobrecarga del operador asignación
-    TListaPoro & operator=(TListaPoro &);
+    TListaPoro & operator=(const TListaPoro &);  // CAMBIO: const
 
     // MÉTODOS
     // Sobrecarga del operador igualdad
-    bool operator==(TListaPoro &);
+    bool operator==(const TListaPoro &) const;  // CAMBIO: const
     // Sobrecarga del operador suma
-    TListaPoro operator+(TListaPoro &);
+    TListaPoro operator+(const TListaPoro &) const;  // CAMBIO: const
     // Sobrecarga del operador resta
-    TListaPoro operator-(TListaPoro &);
+    TListaPoro operator-(const TListaPoro &) const;  // CAMBIO: const
     // Devuelve true si la lista está vacía, false en caso contrario
-    bool EsVacia();
+    bool EsVacia() const;  // CAMBIO: const
     // Inserta el elemento en la lista
-    bool Insertar(TPoro &);
+    bool Insertar(const TPoro &);  // CAMBIO: const
     // Busca y borra el elemento
-    bool Borrar(TPoro &);
+    bool Borrar(const TPoro &);  // CAMBIO: const
     // Borra el elemento que ocupa la posición indicada
     bool Borrar(TListaPosicion &);
     // Obtiene el elemento que ocupa la posición indicada
-    TPoro Obtener(TListaPosicion &);
+    TPoro Obtener(const TListaPosicion &) const;  // CAMBIO: const
     // Devuelve true si el elemento está en la lista, false en caso contrario
-    bool Buscar(TPoro &);
+    bool Buscar(const TPoro &) const;  // CAMBIO: const
     // Devuelve la longitud de la lista
-    int Longitud();
+    int Longitud() const;  // CAMBIO: const
     // Devuelve la primera posición en la lista
-    TListaPosicion Primera();
+    TListaPosicion Primera() const;  // CAMBIO: const
     // Devuelve la última posición en la lista
-    TListaPosicion Ultima();
+    TListaPosicion Ultima() const;  // CAMBIO: const
     // Extraer un rango de nodos de la lista
     TListaPoro ExtraerRango(int n1, int n2);
 
     // FUNCIONES AMIGAS
     // Sobrecarga del operador salida
-    friend ostream & operator<<(ostream &, TListaPoro &);
+    friend ostream & operator<<(ostream &, const TListaPoro &);  // CAMBIO: const
 };
 
 #endif

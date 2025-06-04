@@ -27,17 +27,17 @@ public:
     // Constructor a partir de una posición, un volumen y un color
     TPoro(int, int, double, const char *);
     // Constructor de copia
-    TPoro(TPoro &);
+    TPoro(const TPoro &);  // CAMBIO: const
     // Destructor
     ~TPoro();
     // Sobrecarga del operador asignación
-    TPoro & operator=(TPoro &);
+    TPoro & operator=(const TPoro &);  // CAMBIO: const
 
     // MÉTODOS
     // Sobrecarga del operador igualdad
-    bool operator==(TPoro &);
+    bool operator==(const TPoro &) const;  // CAMBIO: const
     // Sobrecarga del operador desigualdad
-    bool operator!=(TPoro &);
+    bool operator!=(const TPoro &) const;  // CAMBIO: const
     // Modifica la posición
     void Posicion(int, int);
     // Modifica el volumen
@@ -45,19 +45,19 @@ public:
     // Modifica el color
     void Color(const char *);
     // Devuelve la coordenada x de la posición
-    int PosicionX();
+    int PosicionX() const;  // CAMBIO: const
     // Devuelve la coordenada y de la posición
-    int PosicionY();
+    int PosicionY() const;  // CAMBIO: const
     // Devuelve el volumen
-    double Volumen();
+    double Volumen() const;  // CAMBIO: const
     // Devuelve el color
     const char * Color() const;
     // Devuelve cierto si el poro está vacío
-    bool EsVacio();
+    bool EsVacio() const;  // CAMBIO: const
 
     // FUNCIONES AMIGAS
     // Sobrecarga del operador SALIDA
-    friend ostream & operator<<(ostream &, TPoro &);
+    friend ostream & operator<<(ostream &, const TPoro &);  // CAMBIO: const
 };
 
 #endif
