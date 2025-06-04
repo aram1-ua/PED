@@ -9,7 +9,7 @@ TListaNodo::TListaNodo() {
 }
 
 // Constructor de copia
-TListaNodo::TListaNodo(TListaNodo &otro) {
+TListaNodo::TListaNodo(const TListaNodo &otro) {
     e = otro.e;
     anterior = NULL;
     siguiente = NULL;
@@ -22,7 +22,7 @@ TListaNodo::~TListaNodo() {
 }
 
 // Sobrecarga del operador asignación
-TListaNodo & TListaNodo::operator=(TListaNodo &otro) {
+TListaNodo & TListaNodo::operator=(const TListaNodo &otro) {
     if (this != &otro) {
         e = otro.e;
         anterior = NULL;
@@ -39,7 +39,7 @@ TListaPosicion::TListaPosicion() {
 }
 
 // Constructor de copia
-TListaPosicion::TListaPosicion(TListaPosicion &otra) {
+TListaPosicion::TListaPosicion(const TListaPosicion &otra) {
     pos = otra.pos;
 }
 
@@ -49,7 +49,7 @@ TListaPosicion::~TListaPosicion() {
 }
 
 // Sobrecarga del operador asignación
-TListaPosicion& TListaPosicion::operator=(TListaPosicion &otra) {
+TListaPosicion& TListaPosicion::operator=(const TListaPosicion &otra) {
     if (this != &otra) {
         pos = otra.pos;
     }
@@ -57,7 +57,7 @@ TListaPosicion& TListaPosicion::operator=(TListaPosicion &otra) {
 }
 
 // Sobrecarga del operador igualdad
-bool TListaPosicion::operator==(TListaPosicion &otra) {
+bool TListaPosicion::operator==(const TListaPosicion &otra) const{
     return pos == otra.pos;
 }
 
@@ -80,7 +80,7 @@ TListaPosicion TListaPosicion::Siguiente() {
 }
 
 // Devuelve TRUE si la posición no apunta a una lista, FALSE en caso contrario
-bool TListaPosicion::EsVacia() {
+bool TListaPosicion::EsVacia() const{
     return pos == NULL;
 }
 
@@ -93,7 +93,7 @@ TListaPoro::TListaPoro() {
 }
 
 // Constructor de copia
-TListaPoro::TListaPoro(TListaPoro &otra) {
+TListaPoro::TListaPoro(const TListaPoro &otra) {
     primero = NULL;
     ultimo = NULL;
     
@@ -117,7 +117,7 @@ TListaPoro::~TListaPoro() {
 }
 
 // Sobrecarga del operador asignación
-TListaPoro & TListaPoro::operator=(TListaPoro &otra) {
+TListaPoro & TListaPoro::operator=(const TListaPoro &otra) {
     if (this != &otra) {
         // Destruir lista actual
         TListaNodo *actual = primero;
@@ -140,7 +140,7 @@ TListaPoro & TListaPoro::operator=(TListaPoro &otra) {
 }
 
 // Sobrecarga del operador igualdad
-bool TListaPoro::operator==(TListaPoro &otra) {
+bool TListaPoro::operator==(const TListaPoro &otra) const {
     if (Longitud() != otra.Longitud()) {
         return false;
     }
@@ -160,7 +160,7 @@ bool TListaPoro::operator==(TListaPoro &otra) {
 }
 
 // Sobrecarga del operador suma
-TListaPoro TListaPoro::operator+(TListaPoro &otra) {
+TListaPoro TListaPoro::operator+(const TListaPoro &otra) const{
     TListaPoro resultado;
     
     // Insertar elementos de la primera lista
@@ -181,7 +181,7 @@ TListaPoro TListaPoro::operator+(TListaPoro &otra) {
 }
 
 // Sobrecarga del operador resta
-TListaPoro TListaPoro::operator-(TListaPoro &otra) {
+TListaPoro TListaPoro::operator-(const TListaPoro &otra) const{
     TListaPoro resultado;
     
     TListaNodo *actual = primero;
@@ -196,12 +196,12 @@ TListaPoro TListaPoro::operator-(TListaPoro &otra) {
 }
 
 // Devuelve true si la lista está vacía, false en caso contrario
-bool TListaPoro::EsVacia() {
+bool TListaPoro::EsVacia() const {
     return primero == NULL;
 }
 
 // Inserta el elemento en la lista
-bool TListaPoro::Insertar(TPoro &elemento) {
+bool TListaPoro::Insertar(const TPoro &elemento) {
     // Verificar si el elemento ya existe
     if (Buscar(elemento)) {
         return false;
@@ -246,7 +246,7 @@ bool TListaPoro::Insertar(TPoro &elemento) {
 }
 
 // Busca y borra el elemento
-bool TListaPoro::Borrar(TPoro &elemento) {
+bool TListaPoro::Borrar(const TPoro &elemento) {
     TListaNodo *actual = primero;
     
     while (actual != NULL) {
@@ -314,7 +314,7 @@ bool TListaPoro::Borrar(TListaPosicion &posicion) {
 }
 
 // Obtiene el elemento que ocupa la posición indicada
-TPoro TListaPoro::Obtener(TListaPosicion &posicion) {
+TPoro TListaPoro::Obtener(const TListaPosicion &posicion) const {
     if (posicion.EsVacia()) {
         TPoro vacio;
         return vacio;
@@ -323,7 +323,7 @@ TPoro TListaPoro::Obtener(TListaPosicion &posicion) {
 }
 
 // Devuelve true si el elemento está en la lista, false en caso contrario
-bool TListaPoro::Buscar(TPoro &elemento) {
+bool TListaPoro::Buscar(const TPoro &elemento) const{
     TListaNodo *actual = primero;
     while (actual != NULL) {
         if (actual->e == elemento) {
@@ -335,7 +335,7 @@ bool TListaPoro::Buscar(TPoro &elemento) {
 }
 
 // Devuelve la longitud de la lista
-int TListaPoro::Longitud() {
+int TListaPoro::Longitud() const{
     int count = 0;
     TListaNodo *actual = primero;
     while (actual != NULL) {
@@ -346,14 +346,14 @@ int TListaPoro::Longitud() {
 }
 
 // Devuelve la primera posición en la lista
-TListaPosicion TListaPoro::Primera() {
+TListaPosicion TListaPoro::Primera() const {
     TListaPosicion pos;
     pos.pos = primero;
     return pos;
 }
 
 // Devuelve la última posición en la lista
-TListaPosicion TListaPoro::Ultima() {
+TListaPosicion TListaPoro::Ultima() const{
     TListaPosicion pos;
     pos.pos = ultimo;
     return pos;
@@ -427,7 +427,7 @@ TListaPoro TListaPoro::ExtraerRango(int n1, int n2) {
 }
 
 // Sobrecarga del operador salida
-ostream & operator<<(ostream &os, TListaPoro &lista) {
+ostream & operator<<(ostream &os, const TListaPoro &lista) {
     os << "(";
     
     TListaNodo *actual = lista.primero;

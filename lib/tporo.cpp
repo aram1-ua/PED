@@ -17,7 +17,7 @@ TPoro::TPoro(int px, int py, double vol) {
 }
 
 // Constructor a partir de una posición, un volumen y un color
-TPoro::TPoro(int px, int py, double vol, char *col) {
+TPoro::TPoro(int px, int py, double vol, const char *col) {
     x = px;
     y = py;
     volumen = vol;
@@ -60,7 +60,7 @@ TPoro::~TPoro() {
 }
 
 // Sobrecarga del operador asignación
-TPoro & TPoro::operator=(TPoro &otro) {
+TPoro & TPoro::operator=(const TPoro &otro) {
     if (this != &otro) {
         // Liberar memoria previa
         if (color != NULL) {
@@ -83,7 +83,7 @@ TPoro & TPoro::operator=(TPoro &otro) {
 }
 
 // Sobrecarga del operador igualdad
-bool TPoro::operator==(TPoro &otro) {
+bool TPoro::operator==(const TPoro &otro) const{
     if (x != otro.x || y != otro.y || volumen != otro.volumen) {
         return false;
     }
@@ -143,12 +143,12 @@ int TPoro::PosicionY() {
 }
 
 // Devuelve el volumen
-double TPoro::Volumen() {
+double TPoro::Volumen() const{
     return volumen;
 }
 
 // Devuelve el color
-char * TPoro::Color() {
+const char * TPoro::Color() const{
     return color;
 }
 

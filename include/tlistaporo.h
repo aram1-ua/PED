@@ -1,6 +1,6 @@
 #ifndef TLISTAPORO_H
 #define TLISTAPORO_H
-
+#include <iostream>
 #include "tporo.h"
 
 // Declaraciones adelantadas

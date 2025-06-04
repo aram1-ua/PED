@@ -31,11 +31,11 @@ public:
     // Destructor
     ~TPoro();
     // Sobrecarga del operador asignación
-    TPoro & operator=(TPoro &);
+    TPoro & operator=(const TPoro &);
 
     // MÉTODOS
     // Sobrecarga del operador igualdad
-    bool operator==(TPoro &);
+    bool operator==(const TPoro &) const ;
     // Sobrecarga del operador desigualdad
     bool operator!=(TPoro &);
     // Modifica la posición
@@ -49,7 +49,7 @@ public:
     // Devuelve la coordenada y de la posición
     int PosicionY();
     // Devuelve el volumen
-    double Volumen();
+    double Volumen() const;
     // Devuelve el color
     const char * Color() const;
     // Devuelve cierto si el poro está vacío
